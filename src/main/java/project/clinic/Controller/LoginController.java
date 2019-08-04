@@ -10,8 +10,6 @@ import project.clinic.Repository.PatientRepository;
 @Controller
 public class LoginController {
 
-    @Autowired
-    private PatientRepository patientRepository;
 
     @GetMapping("/login")
     public String login(){

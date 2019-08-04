@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import project.clinic.Model.Patient;
 import project.clinic.Model.Visit;
+import project.clinic.PatientService;
 import project.clinic.Repository.PatientRepository;
 import project.clinic.Repository.VisitRepository;
 
@@ -19,11 +20,12 @@ public class PatientController {
     private PatientRepository patientRepository;
 
     @Autowired
-    private VisitRepository visitRepository;
+    private PatientService patientService;
 
-    @GetMapping("/profile/add")
-    public String profile(@ModelAttribute Patient patient, ModelMap map, RedirectAttributes redirectAttributes){
-        patientRepository.save(patient);
+    @GetMapping("/profile/add/{role}")
+    public String profile(@ModelAttribute Patient patient,@PathVariable String role, ModelMap map, RedirectAttributes redirectAttributes){
+        if(role.equals("USER"))patientService.savePatient(patient);
+        else patientService.savePatientAdmin(patient);
         return "redirect:/profile/"+patient.getId();
     }
     @GetMapping("/profile/{id}")

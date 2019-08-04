@@ -5,10 +5,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import project.clinic.Model.Doctor;
 import project.clinic.Model.Patient;
+import project.clinic.Model.Role;
 import project.clinic.Repository.DoctorRepository;
 import project.clinic.Repository.PatientRepository;
 
 import javax.print.Doc;
+import java.util.Arrays;
+import java.util.HashSet;
 
 @Component
 class DataLoader implements CommandLineRunner {
@@ -28,9 +31,12 @@ class DataLoader implements CommandLineRunner {
             doctorRepository.save(new Doctor("Joanna", "Kowalczuk", 38, "Dermatology", 180));
         }
         if(patientRepository.count()==0){
-            patientRepository.save(new Patient("Kacper", "Zden", "www@ww.pl", 28, "1235436", "qwerty"));
-            patientRepository.save(new Patient("Tomek", "Mien", "asdfd@ww.pl", 25, "1235436", "qwerty"));
-            patientRepository.save(new Patient("Ania", "Wrotka", "qrqet@ww.pl", 30, "1235436", "qwerty"));
+            patientRepository.save(new Patient("Kacper", "Zden", "www@ww.pl", 28,
+                    "1235436", "qwerty",new HashSet<>(Arrays.asList(new Role("ADMIN")))));
+            patientRepository.save(new Patient("Tomek", "Mien", "asdfd@ww.pl", 25,
+                    "1235436", "qwerty",new HashSet<>(Arrays.asList(new Role("USER")))));
+            patientRepository.save(new Patient("Ania", "Wrotka", "qrqet@ww.pl", 30,
+                    "1235436", "qwerty",new HashSet<>(Arrays.asList(new Role("USER")))));
         }
     }
 }

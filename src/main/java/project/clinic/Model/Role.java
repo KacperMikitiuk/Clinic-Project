@@ -7,9 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Data
-
 public class Role {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,4 +15,11 @@ public class Role {
     private Integer id;
     @Column(name = "role")
     private String role;
+
+    @OneToOne
+    private Patient patient;
+
+    public Role(String role) {
+        this.role = role;
+    }
 }

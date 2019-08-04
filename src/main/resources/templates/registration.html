@@ -60,6 +60,7 @@
         <div class="mx-auto text-center">
             <h1 class="mx-auto my-0 text-uppercase">Come and join us rigth now</h1>
             <h2 class="text-white-50 mx-auto mt-2 mb-5">Please fill the blank places below</h2>
+
             <form action="/profile/add" th:object="${patient}" style="color: white">
                 <div class="form-row">
                     <div class="form-group col-md-4">
@@ -86,10 +87,16 @@
                         <label for="inputPassword">Password</label>
                         <input type="text" class="form-control" id="inputPassword" placeholder="Password" th:field="*{password}" required>
                     </div>
+                    <select class="custom-select col-md-2 mr-sm-2" name="role" >
+                    <option value="ADMIN">admin</option>
+                    <option selected value="USER">user</option>
+                </select>
                     <div class="form-group col-md-4">
                         <button type="submit" class="btn btn-primary">Sign up</button>
                     </div>
-                </div></form>
+                </div>
+            </form>
+
         </div>
     </div>
 </header>
